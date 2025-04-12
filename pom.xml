@@ -476,7 +476,6 @@
         <module>compatibility/voidchest</module>
         <module>compatibility/worldedit</module>
         <module>compatibility/worldguard</module>
-
     </modules>
 
 </project>
