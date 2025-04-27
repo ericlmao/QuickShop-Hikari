@@ -343,7 +343,7 @@ public class SimpleShopManager extends AbstractShopManager implements ShopManage
       return;
     }
 
-    QuickShop.folia().getImpl().runAtLocation(info.getLocation(), task -> {
+    QuickShop.folia().getScheduler().runAtLocation(info.getLocation(), task -> {
       final BlockState state = info.getLocation().getBlock().getState();
       if(state instanceof final InventoryHolder holder) {
         // Create the basic shop
