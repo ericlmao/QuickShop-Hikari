@@ -43,6 +43,10 @@
     </build>
     <repositories>
         <repository>
+            <id>tcoded-releases</id>
+            <url>https://repo.tcoded.com/releases</url>
+        </repository>
+        <repository>
             <id>dmulloy2-repo</id>
             <url>https://repo.dmulloy2.net/repository/public/</url>
         </repository>
@@ -76,6 +80,18 @@
         </repository>
     </repositories>
     <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.11.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.20.0</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
@@ -373,9 +389,9 @@
             <version>1.26.2</version>
         </dependency>
         <dependency>
-            <groupId>com.github.technicallycoded</groupId>
+            <groupId>com.tcoded</groupId>
             <artifactId>FoliaLib</artifactId>
-            <version>main-SNAPSHOT</version>
+            <version>0.5.1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

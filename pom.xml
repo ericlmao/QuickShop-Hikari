@@ -178,6 +178,7 @@
                                         <include>net.tnemc:*</include>
                                         <include>com.github.technicallycoded:*</include>
                                         <include>com.tcoded.folialib:*</include>
+                                        <include>com.tcoded:FoliaLib</include>
                                         <include>com.github.technicallycoded.folialib:*</include>
                                         <include>com.ghostchu:quickshop*:*</include>
                                         <include>com.ghostchu.quickshop.compatibility:*:*</include>
