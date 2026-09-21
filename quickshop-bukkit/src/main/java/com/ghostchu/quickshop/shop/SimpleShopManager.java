@@ -261,19 +261,22 @@ public class SimpleShopManager extends AbstractShopManager implements ShopManage
       plugin.text().of(buyer, "shop-transaction-failed", shopError.getMessage()).send();
       return false;
     }
+    // The payer is charged the gross transaction amount; tax is withheld from the seller's receipt.
+    // Capture the settled amount and currency before callbacks or async delivery can change the shop.
+    final String formattedTotal = this.formatter.format(transaction.getAmount(), transaction.getWorld(), transaction.getCurrency());
     sendSellSuccess(buyerQUser, shop, amount, total, transaction.getTax());
     new ShopSuccessPurchaseEvent(shop, buyerQUser, buyerInventory, amount, total, transaction.getTax()).callEvent();
     shop.setSignText(plugin.text().findRelativeLanguages(buyer)); // Update the signs count
-    notifySold(buyerQUser, shop, amount, space);
+    notifySold(buyerQUser, shop, amount, space, formattedTotal);
     return true;
   }
 
-  private void notifySold(@NotNull final QUser buyerQUser, @NotNull final Shop shop, final int amount, final int space) {
+  private void notifySold(@NotNull final QUser buyerQUser, @NotNull final Shop shop, final int amount, final int space, @NotNull final String formattedTotal) {
 
     Util.asyncThreadRun(()->{
       final String langCode = plugin.text().findRelativeLanguages(buyerQUser, true).getLocale();
       final List<Component> sendList = new ArrayList<>();
-      Component notify = plugin.text().of("player-sold-to-your-store", buyerQUser.getDisplay(), amount, Util.getItemStackName(shop.getItem())).forLocale(langCode);
+      Component notify = plugin.text().of("player-sold-to-your-store", buyerQUser.getDisplay(), amount, Util.getItemStackName(shop.getItem()), formattedTotal).forLocale(langCode);
       notify = plugin.getPlatform().setItemStackHoverEvent(notify, shop.getItem());
       sendList.add(notify);
       if(space == amount) {
